@@ -69,6 +69,18 @@ func Test_encrypt(t *testing.T) {
 				plaintext: "kingsman",
 				key:       "04076d64bdb6fcf31706eea85ec98431"},
 		},
+		{
+			name: "KTP",
+			args: args{
+				plaintext: "1111222233334444",
+				key:       "04076d64bdb6fcf31706eea85ec98431"},
+		},
+		{
+			name: "KTP 2",
+			args: args{
+				plaintext: "3322135507770044",
+				key:       "04076d64bdb6fcf31706eea85ec98431"},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
