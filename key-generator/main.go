@@ -42,7 +42,7 @@ func exportKeytoPEM(privKey *rsa.PrivateKey, pubKey *rsa.PublicKey) (privPEM, pu
 
 func main() {
 	// Generate the keys
-	priv, pub := generateRsaKeyPair(2048)
+	priv, pub := generateRsaKeyPair(4096)
 
 	// Format the keys into PEM
 	privPem, pubPem, _ := exportKeytoPEM(priv, pub)
