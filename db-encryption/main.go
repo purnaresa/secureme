@@ -28,7 +28,10 @@ func main() {
 }
 
 func createData(id, name, nationalID, createTimeUnix string) (err error) {
-	nationalID, _ = encrypt(nationalID, masterKey) // encryption
+	nationalID, err = encrypt(nationalID, masterKey) // encryption
+	if err != nil {
+		return err
+	}
 	_, err = DB.Exec(`
     INSERT INTO 
         user (id, name, national_id, create_time_unix)
@@ -53,9 +56,15 @@ func readData(id string) (user User, err error) {
 		&user.Name,
 		&user.NationalID,
 		&user.CreateTimeUnix)
+	if err != nil {
+		return
+	}
 
 	// decryption
-	user.NationalID, _ = decrypt(user.NationalID, masterKey)
+	user.NationalID, err = decrypt(user.NationalID, masterKey)
+	if err != nil {
+		return
+	}
 	//
 	return
 }
